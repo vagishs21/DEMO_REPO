@@ -1,0 +1,15 @@
+# The main pipeline for demo_repo
+resources:
+  pipelines:
+    demo_repo_pipeline:
+      name: demo_repo_pipeline
+      ## Catalog is required for serverless compute
+      catalog: main
+      schema: demo_repo_${bundle.target}
+      serverless: true
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
